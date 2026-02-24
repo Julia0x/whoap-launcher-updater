@@ -335,46 +335,62 @@
 
 .modGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: 16px;
 }
 
-/* Mod Card */
+/* Mod Card - Enhanced Design */
 .modCard {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 14px;
-    padding: 16px;
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 170, 0, 0.15);
+    border-radius: 16px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    backdrop-filter: blur(8px);
+}
+
+.modCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255, 170, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
 }
 
 .modCard:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.05) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border-color: rgba(255, 170, 0, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(255, 170, 0, 0.15), 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.modCard:hover::before {
+    opacity: 1;
 }
 
 .modCardTop {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
 }
 
 .modIcon {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     border-radius: 12px;
-    background: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1.5px solid rgba(255, 170, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(255, 170, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .modInfo {
@@ -390,116 +406,133 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 8px;
 }
 
 .modName {
     color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.2;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
     padding-top: 2px;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .modAuthor {
-    color: #888;
-    font-size: 13px;
+    color: #999;
+    font-size: 12px;
     margin: 0;
+    font-weight: 500;
 }
 
 .modDesc {
     color: #aaa;
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin: 0;
+    margin: 2px 0 0 0;
 }
 
 .modCardBottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
+    gap: 12px;
+    margin-top: 6px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 170, 0, 0.1);
 }
 
 .modStats {
     display: flex;
-    gap: 12px;
+    gap: 8px;
+    align-items: center;
 }
 
 .statBadge {
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 4px 10px;
+    gap: 5px;
+    background: rgba(255, 170, 0, 0.08);
+    padding: 5px 10px;
     border-radius: 6px;
-    color: #888;
-    font-size: 12px;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: #ff9800;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 170, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
 }
 
 .statBadge svg {
-    color: #666;
+    color: #ffaa00;
 }
 
 /* Install Button - Inline */
 .actionBtn {
-    padding: 8px 16px;
+    padding: 8px 14px;
     border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     border: none;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .btnInstall {
-    background: #fff;
+    background: linear-gradient(135deg, #ffaa00 0%, #ff9800 100%);
     color: #000;
+    box-shadow: 0 4px 12px rgba(255, 170, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btnInstall:hover {
-    background: #e5e5e5;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #ffb700 0%, #ffa500 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 170, 0, 0.4);
 }
 
 .btnInstalled {
     background: rgba(74, 222, 128, 0.1);
     color: #4ade80;
-    border: 1px solid rgba(74, 222, 128, 0.2);
+    border: 1.5px solid rgba(74, 222, 128, 0.3);
     cursor: default;
 }
 
 .btnUpdate {
-    background: rgba(59, 130, 246, 0.1);
-    color: #60a5fa;
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    background: rgba(255, 170, 0, 0.12);
+    color: #ffaa00;
+    border: 1.5px solid rgba(255, 170, 0, 0.4);
 }
 
 .btnUpdate:hover {
-    background: rgba(59, 130, 246, 0.2);
+    background: rgba(255, 170, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 /* Downloading State */
 .btnDownloading {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: rgba(255, 170, 0, 0.1);
+    color: #ffaa00;
     cursor: default;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1.5px solid rgba(255, 170, 0, 0.3);
     width: 120px;
 }
 
@@ -508,8 +541,8 @@
     top: 0;
     left: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.2);
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 170, 0, 0.3);
+    transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: -1;
 }
 
@@ -517,6 +550,7 @@
     position: relative;
     z-index: 1;
     font-variant-numeric: tabular-nums;
+    font-weight: 700;
 }
 
 /* Global Progress Overlay on Card */
@@ -524,10 +558,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 3px;
-    background: #fff;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 10px #fff;
+    height: 4px;
+    background: linear-gradient(90deg, #ffaa00 0%, #ff9800 100%);
+    transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 12px rgba(255, 170, 0, 0.6);
     z-index: 5;
 }
 
@@ -693,24 +727,33 @@
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 170, 0, 0.2);
     font-size: 14px;
+    font-weight: 500;
 }
 
 .versionStatus.loading {
-    color: #60a5fa;
+    color: #ffaa00;
+    border-color: rgba(255, 170, 0, 0.3);
+    background: rgba(255, 170, 0, 0.05);
 }
 
 .versionStatus.compatible {
     color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.2);
+    background: rgba(74, 222, 128, 0.05);
 }
 
 .versionStatus.installed {
-    color: #60a5fa;
+    color: #ffaa00;
+    border-color: rgba(255, 170, 0, 0.3);
+    background: rgba(255, 170, 0, 0.05);
 }
 
 .versionStatus.incompatible {
-    color: #f87171;
+    color: #ff6b6b;
+    border-color: rgba(255, 107, 107, 0.2);
+    background: rgba(255, 107, 107, 0.05);
 }
 
 .spin {
@@ -727,9 +770,9 @@
 }
 
 .depsSection {
-    background: rgba(255, 255, 255, 0.02);
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 170, 0, 0.12);
     overflow: hidden;
 }
 
@@ -737,53 +780,63 @@
     margin: 0 0 12px 0;
     color: #fff;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     padding: 16px 16px 0 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .depsList {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
     padding: 0 16px 16px 16px;
 }
 
 .depItem {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
+    gap: 12px;
+    padding: 12px 14px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     font-size: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .depItem.required {
-    border: 1px solid rgba(251, 191, 36, 0.2);
+    border: 1.5px solid rgba(255, 170, 0, 0.3);
+    background: rgba(255, 170, 0, 0.06);
 }
 
 .depItem.optional {
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.depItem:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 170, 0, 0.2);
 }
 
 .depItem span:first-child {
-    padding: 3px 8px;
+    padding: 4px 9px;
     border-radius: 4px;
-    font-weight: 600;
-    font-size: 10px;
+    font-weight: 700;
+    font-size: 9px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05em;
     flex-shrink: 0;
 }
 
 .required {
-    background: rgba(251, 191, 36, 0.15);
-    color: #fbbf24;
+    background: rgba(255, 170, 0, 0.2);
+    color: #ffaa00;
 }
 
 .optional {
-    background: rgba(255, 255, 255, 0.08);
-    color: #888;
+    background: rgba(255, 255, 255, 0.1);
+    color: #aaa;
 }
 
 .depItem span:last-child {
@@ -1015,17 +1068,19 @@
 }
 
 .missingDeps {
-    background: rgba(255, 180, 0, 0.05);
-    border: 1px solid rgba(255, 180, 0, 0.2);
+    background: rgba(255, 170, 0, 0.08);
+    border: 1.5px solid rgba(255, 170, 0, 0.25);
     border-radius: 10px;
     padding: 16px;
 }
 
 .missingDeps p {
-    color: #fbbf24;
-    font-size: 13px;
+    color: #ffaa00;
+    font-size: 12px;
     margin: 0 0 12px 0;
-    font-weight: 500;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .missingDeps ul {

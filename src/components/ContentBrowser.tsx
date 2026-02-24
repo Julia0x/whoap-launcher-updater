@@ -372,10 +372,11 @@ export const ContentBrowser: React.FC<ContentBrowserProps> = ({ instanceId, vers
         const pid = project.project_id;
         setConfirmInstall(false);
 
+        // Initialize progress display for main project
+        setDownloadingProjects(prev => ({ ...prev, [pid]: { status: 'Initializing...', progress: 0, name: project.title } }));
+
         if (requiredDeps.length > 0) {
             showToast(`Installing ${project.title} ${requiredDeps.length > 0 ? `and ${requiredDeps.length} ${requiredDeps.length === 1 ? 'dependency' : 'dependencies'}` : ''}...`, 'info');
-        } else {
-            setDownloadingProjects(prev => ({ ...prev, [pid]: { status: 'Preparing...', progress: 0, name: project.title } }));
         }
 
         try {

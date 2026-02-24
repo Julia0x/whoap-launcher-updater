@@ -904,7 +904,7 @@ export class InstanceManager {
 
         if (isModrinth || isCurseForge) {
             console.log(`[InstanceManager] Detected modpack import (${isModrinth ? 'Modrinth' : 'CurseForge'})`);
-            event?.sender.send('instance:import-progress', { status: 'Initializing modpack installer...', progress: 20 });
+            event?.sender.send('instance:import-progress', { status: 'Initializing modpack installer...', progress: 5 });
 
             const { ModpackInstaller } = await import('../utils/ModpackInstaller');
             try {
@@ -924,7 +924,7 @@ export class InstanceManager {
             throw new Error('Invalid file: instance.json or modpack manifest not found inside zip.');
         }
 
-        event?.sender.send('instance:import-progress', { status: 'Parsing configuration...', progress: 30 });
+        event?.sender.send('instance:import-progress', { status: 'Parsing configuration...', progress: 15 });
 
         const configContent = configEntry.getData().toString('utf8');
         let config;
@@ -942,7 +942,7 @@ export class InstanceManager {
             counter++;
         }
 
-        event?.sender.send('instance:import-progress', { status: 'Extracting files...', progress: 50 });
+        event?.sender.send('instance:import-progress', { status: 'Extracting files...', progress: 35 });
 
         const destPath = path.join(this.instancesPath, newInstanceId);
         zip.extractAllTo(destPath, true);
@@ -954,7 +954,7 @@ export class InstanceManager {
             await fs.writeFile(path.join(destPath, 'instance.json'), JSON.stringify(config, null, 4));
         }
 
-        event?.sender.send('instance:import-progress', { status: 'Finalizing...', progress: 100 });
+        event?.sender.send('instance:import-progress', { status: 'Finalizing...', progress: 90 });
 
         return { success: true, instanceId: newInstanceId };
     }
