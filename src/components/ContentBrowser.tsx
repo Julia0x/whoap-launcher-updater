@@ -467,33 +467,12 @@ export const ContentBrowser: React.FC<ContentBrowserProps> = ({ instanceId, vers
                         </div>
                     </div>
                     <div className={styles.headerRight}>
-                        {updateCount > 0 && (
-                            <button className={styles.updateAllBtn} onClick={openUpdateModal}>
-                                <RefreshCw size={14} /> Updates
-                                <span className={styles.updateCount}>{updateCount}</span>
-                            </button>
-                        )}
                         <span className={styles.versionTag}>{version}</span>
                         {type === 'mod' && <span className={styles.loaderTag}>{loader}</span>}
                     </div>
                 </div>
 
                 <div className={styles.body}>
-                    <div className={styles.sidebar}>
-                        <div className={styles.sidebarSection}>
-                            <span className={styles.sidebarTitle}>Categories</span>
-                            {categories.map(cat => (
-                                <button
-                                    key={cat}
-                                    className={`${styles.categoryBtn} ${activeCategory === cat ? styles.active : ''}`}
-                                    onClick={() => setActiveCategory(cat)}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
                     <div className={styles.mainContent}>
                         <div className={styles.contentHeader}>
                             <h3>Discover {type}s</h3>
@@ -559,19 +538,12 @@ export const ContentBrowser: React.FC<ContentBrowserProps> = ({ instanceId, vers
                                                             </div>
                                                         </div>
 
-                                                        {downInfo ? (
-                                                            <button className={`${styles.actionBtn} ${styles.btnDownloading}`} onClick={e => e.stopPropagation()}>
-                                                                <div className={styles.progressFill} style={{ width: `${downInfo.progress}%` }} />
-                                                                <span className={styles.progressText}>{downInfo.progress}%</span>
-                                                            </button>
-                                                        ) : hasUpdate ? (
-                                                            <button 
-                                                                className={`${styles.actionBtn} ${styles.btnUpdate}`}
-                                                                onClick={e => { e.stopPropagation(); openUpdateModal(); }}
-                                                            >
-                                                                <RefreshCw size={14} /> Update
-                                                            </button>
-                                                        ) : installed ? (
+                                        {downInfo ? (
+                                            <button className={`${styles.actionBtn} ${styles.btnDownloading}`} onClick={e => e.stopPropagation()}>
+                                                <div className={styles.progressFill} style={{ width: `${downInfo.progress}%` }} />
+                                                <span className={styles.progressText}>{downInfo.progress}%</span>
+                                            </button>
+                                        ) : installed ? (
                                                             <button
                                                                 className={`${styles.actionBtn} ${styles.btnInstalled}`}
                                                                 onClick={e => e.stopPropagation()}
@@ -683,94 +655,7 @@ export const ContentBrowser: React.FC<ContentBrowserProps> = ({ instanceId, vers
                 </div>
             )}
 
-            {showUpdateModal && (
-                <div className={styles.updateOverlay} onClick={() => setShowUpdateModal(false)}>
-                    <div className={styles.updateModal} onClick={e => e.stopPropagation()}>
-                        <div className={styles.updateModalHeader}>
-                            <h2><RefreshCw size={20} /> Check Updates</h2>
-                            <button className={styles.updateModalClose} onClick={() => setShowUpdateModal(false)}>
-                                <X size={20} />
-                            </button>
-                        </div>
-                        
-                        <div className={styles.updateModalBody}>
-                            {updateItems.length === 0 ? (
-                                <div className={styles.updateEmpty}>
-                                    <CheckCircle size={48} />
-                                    <h3>All up to date!</h3>
-                                    <p>No updates available for your installed {type}s.</p>
-                                </div>
-                            ) : (
-                                updateItems.map(item => (
-                                    <div key={item.projectId} className={styles.updateItem}>
-                                        <div className={styles.updateItemIcon}>
-                                            {item.iconUrl ? (
-                                                <img src={item.iconUrl} alt="" />
-                                            ) : (
-                                                <Package size={24} />
-                                            )}
-                                        </div>
-                                        <div className={styles.updateItemInfo}>
-                                            <div className={styles.updateItemName}>{item.name}</div>
-                                            <div className={styles.updateItemVersions}>
-                                                <span>v{item.currentVersion}</span>
-                                                <ChevronRight size={12} />
-                                                <span>v{item.newVersion}</span>
-                                            </div>
-                                        </div>
-                                        <div className={styles.updateItemStatus}>
-                                            {item.status === 'checking' && (
-                                                <div className={`${styles.updateStatusIcon} ${styles.checking}`}>
-                                                    <RefreshCw size={16} className={styles.spin} />
-                                                </div>
-                                            )}
-                                            {item.status === 'updating' && (
-                                                <div className={`${styles.updateStatusIcon} ${styles.updating}`}>
-                                                    <RefreshCw size={16} className={styles.spin} />
-                                                </div>
-                                            )}
-                                            {item.status === 'updated' && (
-                                                <div className={`${styles.updateStatusIcon} ${styles.updated}`}>
-                                                    <CheckCircle size={16} />
-                                                </div>
-                                            )}
-                                            {item.status === 'failed' && (
-                                                <div className={`${styles.updateStatusIcon} ${styles.failed}`}>
-                                                    <AlertTriangle size={16} />
-                                                </div>
-                                            )}
-                                            {item.status === 'pending' && (
-                                                <button 
-                                                    className={`${styles.actionBtn} ${styles.btnUpdate}`}
-                                                    onClick={() => performUpdate(item.projectId)}
-                                                >
-                                                    <Download size={14} /> Update
-                                                </button>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))
-                            )}
-                        </div>
 
-                        <div className={styles.updateModalFooter}>
-                            <div className={styles.updateSummary}>
-                                {updateItems.length > 0 && (
-                                    <><strong>{updateItems.filter(i => i.status === 'updated').length}</strong> of <strong>{updateItems.length}</strong> updated</>
-                                )}
-                            </div>
-                            <div className={styles.updateActions}>
-                                <button className={styles.cancelBtn} onClick={() => setShowUpdateModal(false)}>Close</button>
-                                {updateItems.some(i => i.status === 'pending') && (
-                                    <button className={styles.updateBtn} onClick={handleUpdateAll}>
-                                        <RefreshCw size={16} /> Update All
-                                    </button>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

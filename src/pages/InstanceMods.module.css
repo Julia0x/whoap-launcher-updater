@@ -45,13 +45,14 @@
 }
 
 .loaderTag {
-    background: #ffaa00;
-    color: #000;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
     font-weight: 700;
     font-size: 0.75rem;
     padding: 2px 6px;
     border-radius: 4px;
     text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .backBtn {
@@ -110,9 +111,8 @@
 }
 
 .contentTypeBtn.active {
-    background: #ffaa00;
-    color: #000;
-    box-shadow: 0 4px 12px rgba(255, 170, 0, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
 }
 
 .tabs {
@@ -184,7 +184,7 @@
 }
 
 .addModBtn {
-    background: linear-gradient(135deg, #ffaa00 0%, #ff9800 100%);
+    background: #fff;
     color: #000;
     border: none;
     border-radius: 12px;
@@ -196,16 +196,14 @@
     font-weight: 700;
     font-size: 13px;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(255, 170, 0, 0.3);
+    transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.02em;
 }
 
 .addModBtn:hover:not(:disabled) {
-    background: linear-gradient(135deg, #ffb700 0%, #ffa500 100%);
+    background: #f5f5f5;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 170, 0, 0.4);
 }
 
 .addModBtn:active:not(:disabled) {
@@ -213,15 +211,15 @@
 }
 
 .secondaryAdd {
-    background: rgba(255, 170, 0, 0.15);
-    color: #ffaa00;
-    border: 1.5px solid rgba(255, 170, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: none;
 }
 
 .secondaryAdd:hover {
-    background: rgba(255, 170, 0, 0.25);
-    border-color: rgba(255, 170, 0, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .lockedBtn {
@@ -238,8 +236,8 @@
 
 .searchInput:focus {
     outline: none;
-    border-color: #ffaa00;
-    box-shadow: 0 0 0 2px rgba(255, 170, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
 }
 
 .content {
@@ -266,50 +264,34 @@
     padding-left: 4px;
 }
 
-/* New Mod Card Design - Grid Match - Enhanced */
+/* Mod Card Design - Clean */
 .modCard {
-    background: linear-gradient(135deg, rgba(255, 170, 0, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-    border: 1px solid rgba(255, 170, 0, 0.12);
-    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
     padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(8px);
-}
-
-.modCard::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right, rgba(255, 170, 0, 0.08) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
 }
 
 .modCard:hover {
-    background: linear-gradient(135deg, rgba(255, 170, 0, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-    border-color: rgba(255, 170, 0, 0.25);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(255, 170, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.modCard:hover::before {
-    opacity: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
 }
 
 .modCard.disabled {
     opacity: 0.6;
-    filter: grayscale(0.6) brightness(0.9);
+    filter: grayscale(0.5);
 }
 
 .modCard.disabled:hover {
     opacity: 0.75;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .modCardTop {
@@ -322,13 +304,12 @@
     width: 72px;
     height: 72px;
     border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255, 170, 0, 0.15), rgba(255, 136, 0, 0.08));
-    border: 1.5px solid rgba(255, 170, 0, 0.25);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffaa00;
-    box-shadow: 0 4px 12px rgba(255, 170, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    color: #888;
     flex-shrink: 0;
     font-size: 28px;
 }
@@ -396,7 +377,7 @@
     align-items: center;
     margin-top: auto;
     padding-top: 12px;
-    border-top: 1px solid rgba(255, 170, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     gap: 8px;
 }
 
