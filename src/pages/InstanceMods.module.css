@@ -281,7 +281,6 @@
 .modCard:hover {
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
 }
 
 .modCard.disabled {
@@ -291,7 +290,6 @@
 
 .modCard.disabled:hover {
     opacity: 0.75;
-    transform: translateY(-1px);
 }
 
 .modCardTop {

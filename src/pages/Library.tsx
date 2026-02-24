@@ -102,7 +102,7 @@ export const Library: React.FC<LibraryProps> = ({ preselectedInstanceId: externa
                                                     }}
                                                 >
                                                     <span>{inst.name}</span>
-                                                    {inst.id === selectedInstanceId && <Check size={14} color="#ffaa00" />}
+                                                    {inst.id === selectedInstanceId && <Check size={14} color="#fff" />}
                                                 </div>
                                             ))
                                         )}
